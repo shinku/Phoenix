@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=750, user-scaleable=no"/>
+    <title>Title</title>
+    <style>*{
+        margin: 0 0;
+    }
+    .page{
+
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: none;
+        padding-top: 50px;
+        color: #ffffff;
+    }
+        .page1{
+            background: #DDf000;
+        }
+        .page2{
+            background: #123123;
+        }
+        .page3{
+            background: #123abc;
+        }
+        .page4{
+            background: #abcaaa;
+        }
+    input{
+        font-size: 30px;
+    }
+    H1{
+        font-size: 100px;
+    }
+    </style>
+</head>
+<body style="width: 1000px">
+<div class="page page1"><H1>page1</H1>
+<input value="CLICK" type="button" class="click1"></div>
+<div class="page page2"><H1>page2</H1>
+    <input value="CLICK" type="button" class="click2"></div>
+<div class="page page3"><H1>page3</H1>
+    <input value="CLICK" type="button" class="click3"></div>
+<div class="page page4"><H1>page4</H1>
+    <input value="CLICK" type="button" class="click4"></div>
+<div class="icons" style="position: fixed; top: 0px;">
+    <input type="button" value="click1" onclick="page1.init()">
+    <input type="button" value="click2" onclick="page2.init()">
+    <input type="button" value="click3" onclick="page3.init()">
+    <input type="button" value="click4" onclick="page4.init()"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="../lib/phoenix.js"></script>
+<script>
+
+    var PH_main={};
+    var a=2;
+    var page1,page2,page3,page4;
+
+    PH_main.init=function(){
+
+         PH_Track.ga("UA-6655544").ga('UA-123345').flSrc('5317903').flType('eyehs0');//注册GA and flootlight
+
+         page1=PH_Page.newPage('.page1').init(start).gaPV('page1').tag('page1').back(back);
+
+         page2=PH_Page.newPage('.page2').init(start).gaPV('page2').fl({UV:'123',PV:'456'}).tag('page2').back(back);
+
+         page3=PH_Page.newPage('.page3').init(start).gaPV('page3').fl({UV:'456',PV:'666'}).tag('page3').back(back);
+
+         page4=PH_Page.newPage('.page4').init(start).gaPV('page4').fl({UV:'111',PV:'333'}).tag('page4').back(back);
+
+         var btn1=PH_DOM.newDom('.click1').click(clickFun).ga({if:'a=2',label:'click1',category:'mbl',action:'a'}).
+                                                            ga({if:'a=3',label:'click3',category:'mbl',action:'a'});
+        btn1.fl({UV:'345',PV:'678'});
+            btn1.ga({if:'a=4',label:'click3',category:'mbl',action:'a'});
+        var btn2=PH_DOM.newDom('.click2').click(clickFun).ga({label:'clickk2',category:'mbl2',action:'b'});
+        btn2.fl({UV:'888',PV:'999'});
+
+    };
+    function start(target)
+    {
+        target.dom.fadeIn();
+    };
+    function back(target)
+    {
+        target.dom.fadeOut();
+    }
+    function clickFun(target)
+    {
+        console.log(target);
+    };
+
+</script>
+</html>
